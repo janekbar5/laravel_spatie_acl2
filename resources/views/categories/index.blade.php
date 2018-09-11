@@ -31,7 +31,7 @@
 	    @foreach ($categories as $category)
 	    <tr>
 	        <td>{{ ++$i }}</td>
-	        <td>{{ $category->name }}</td>
+	        <td>{{ $category->title }}</td>
 	        <td>{{ $category->description }}</td>
 	        <td>
                

@@ -4,13 +4,12 @@
 namespace App;
 
 
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
-
-class Category extends Eloquent
+class Category extends Model
 {
-	protected $connection = 'mongodb';
-	protected $collection = 'categories';
+	//protected $connection = 'mongodb';
+	//protected $collection = 'categories';
 
 
     /**
@@ -22,10 +21,13 @@ class Category extends Eloquent
         'name', 'description'
     ];
 	
-	public function categoryBelongsToBook()
-    {
-        return $this->belongsTo('App\Book','category_id');
-    }
+    
+    /*
+    public function books() 
+   {
+      return $this->hasMany('Book');
+   }
+*/
 	
 	
 	

@@ -35,8 +35,8 @@
          <div class="row">
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
-		            <strong>Name:</strong>
-		            <input type="text" name="name" value="{{ $category->name }}" class="form-control" placeholder="Name">
+		            <strong>Title:</strong>
+		            <input type="text" name="title" value="{{ $category->title }}" class="form-control" placeholder="Title">
 		        </div>
 		    </div>
 		    <div class="col-xs-12 col-sm-12 col-md-12">

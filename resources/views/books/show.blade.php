@@ -18,22 +18,22 @@
         
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Name:</strong>
-                {{ $book->name }}
+                <strong>Title:</strong>
+                {{ $book->title }}
             </div>
         </div>
 		
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Details:</strong>
-                {{ $book->detail }}
+                <strong>Description:</strong>
+                {{ $book->description }}
             </div>
         </div>
 		
 		 <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Category:</strong>
-                {{ $book->getCategory($book->category_id)->name }}
+               
             </div>
         </div>
 		

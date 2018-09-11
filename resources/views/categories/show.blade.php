@@ -17,14 +17,14 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Name:</strong>
-                {{ $category->name }}
+                <strong>Title:</strong>
+                {{ $category->title }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Details:</strong>
-                {{ $category->detail }}
+                <strong>Description:</strong>
+                {{ $category->description }}
             </div>
         </div>
     </div>

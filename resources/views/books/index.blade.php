@@ -26,15 +26,15 @@
             <th>No</th>
             <th>Name</th>
             <th>Details</th>
-			<th>Category</th>
+	    <th>Category</th>
             <th width="280px">Action</th>
         </tr>
 	    @foreach ($books as $book)
 	    <tr>
-	        <td></td>
-	        <td>{{ $book->name }}</td>
+	        <td>{{ $book->id }}</td>
+	        <td>{{ $book->title }}</td>
 	        <td>{{ $book->description }}</td>
-			<td>{{ $book->getCategory($book->category_id)->name }}</td>
+		<td>{{ $book->category()->first()->title }}</td>
 	        <td>
                 {!! Form::open(['method' => 'DELETE', 'route'=>['books.destroy', $book->id]]) !!}    
                     <a class="btn btn-info" href="{{ route('books.show',$book->id) }}">Show</a>
@@ -49,6 +49,7 @@
     </table>
 	
 	
+    
 	
 	{!! $books->render() !!}
 	

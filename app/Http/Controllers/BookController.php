@@ -59,12 +59,19 @@ class BookController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'title' => 'required',
+            'description' => 'required',
         ]);
+        
+        //dd($request->all());
+        $book = new Book;        
+        $book->title = $request->input('title');
+        $book->category_id = $request->input('category_id');
+        $book->description = $request->input('description');
 
-
-        Book::create($request->all());
+        
+        //Book::create($book);
+        $book->save();
 
 
         return redirect()->route('books.index')
@@ -80,9 +87,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        
-		$book = Book::find($id);
-		return view('books.show',compact('book'));
+        $book = Book::find($id);
+	return view('books.show',compact('book'));
     }
 
 
@@ -95,7 +101,7 @@ class BookController extends Controller
     public function edit($id)	
     {
         $book = Book::find($id);
-		return view('books.edit',compact('book'));
+	return view('books.edit',compact('book'));
     }
 
 
@@ -109,12 +115,17 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
          request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'title' => 'required',
+            'description' => 'required',
         ]);
 
         $book = Book::find($id);
-        $book->update($request->all());
+        //dd($request->all());
+        $book->title = $request->input('title');
+        $book->category_id = $request->input('category_id');
+        $book->description = $request->input('description');
+        
+        $book->update();
 
 
         return redirect()->route('books.index')
