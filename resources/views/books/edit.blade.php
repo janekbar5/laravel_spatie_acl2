@@ -39,16 +39,34 @@
 		            <input type="text" name="name" value="{{ $book->name }}" class="form-control" placeholder="Name">
 		        </div>
 		    </div>
+             
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
 		            <strong>Detail:</strong>
 		            <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $book->detail }}</textarea>
 		        </div>
 		    </div>
-             <!--
-		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-		      <button type="submit" class="btn btn-primary">Submit</button>
-		    </div>-->
+             
+                ...{{ $category }}
+                
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                     <div class="form-group">
+                        <label for="City">Choose Category</label>
+                        <select name="category_id" class="form-control">
+                                      
+                          @if (isset($categories))
+                          <option value ="">Choose Category</option>  
+                            @foreach ($categories as $cat)
+                            <option value ="{{$cat->id}}" @if ($cat->id === $book->category_id) selected="selected" @endif>{{ $cat->name }} </option>
+                             
+                             @endforeach
+                         @endif
+                      </select>
+                      </div>  
+                    </div>
+                
+               
+             
 		</div>
 
 

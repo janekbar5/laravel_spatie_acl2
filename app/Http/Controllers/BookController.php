@@ -27,11 +27,9 @@ class BookController extends Controller
         return $categories = Category::all();
     }
 	
-	/**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+	
+    
+     
     public function index()
     {
         //$books = Book::all();
@@ -44,11 +42,6 @@ class BookController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $categories = $this->getCategories();
@@ -56,12 +49,7 @@ class BookController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+  
     public function store(Request $request)
     {
         request()->validate([
@@ -82,12 +70,8 @@ class BookController extends Controller
     }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Book  $book
-     * @return \Illuminate\Http\Response
-     */
+    
+    
     public function show($id)
     {
         
@@ -96,31 +80,27 @@ class BookController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Book  $book
-     * @return \Illuminate\Http\Response
-     */
+    
+    
     public function edit($id)	
     {
         $book = Book::find($id);
-		return view('books.edit',compact('book'));
+        $categories = $this->getCategories();
+        $category = Category::find($book->category_id);
+	return view('books.edit',compact('book','categories','category'));
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Book  $book
-     * @return \Illuminate\Http\Response
-     */
+   
+    
+    
+    
     public function update(Request $request, $id)
     {
          request()->validate([
             'name' => 'required',
             'detail' => 'required',
+            'category_id' => 'required',
         ]);
 
         $book = Book::find($id);

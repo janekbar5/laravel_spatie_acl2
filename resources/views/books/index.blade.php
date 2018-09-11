@@ -24,15 +24,14 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Name</th>
-            
+            <th>Name</th>            
             <th>Category</th>
             <th width="280px">Action</th>
         </tr>
-	    @foreach ($books as $book)
+	    @foreach ($books as $key=>$book)
             
 	    <tr>
-	        <td></td>
+	        <td>{{ ++$key }}</td>
 	        <td>{{ $book->name }}</td>
 	       
 		<td>{{ $book->category()->first()->name }}</td>
