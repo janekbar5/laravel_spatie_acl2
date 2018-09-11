@@ -33,7 +33,7 @@ return [
 
     'connections' => [
 	
-	     'mongodb' => [
+	'mongodb' => [
             'driver'   => 'mongodb',
             'host'     => env('DB_HOST', 'localhost'),
             'port'     => env('DB_PORT', 27017),
@@ -42,6 +42,7 @@ return [
             'password' => env('DB_PASSWORD'),
             'options'  => ['database' => 'admin'],
         ],
+        /*
 
         'sqlite' => [
             'driver' => 'sqlite',
@@ -76,7 +77,7 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
-
+        */
     ],
 
     /*

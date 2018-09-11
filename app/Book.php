@@ -19,20 +19,21 @@ class Book extends Eloquent
      * @var array
      */
     protected $fillable = [
-        'name', 'detail'
+        'name','category_id', 'detail'
     ];
 	
-	public function bookHasCategory()
+    public function category()
     {
-        return $this->hasMany('App\Category');
+        //return $this->hasMany('App\Category');
+        return $this->belongsTo('App\Category','category_id');
     }
 
 	
 	
-	public function getCategory($id)
+    public function getCategory($id)
     {
-		//return $this->categoryObject->getCategory($id);
-		return Category::find($id);	
-	}
+	//return $this->categoryObject->getCategory($id);
+	return Category::find($id);	
+    }
 	
 }

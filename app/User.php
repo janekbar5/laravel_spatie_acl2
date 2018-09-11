@@ -6,7 +6,6 @@ use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 
-
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Hash;
@@ -30,9 +29,9 @@ class User extends Authenticatable
     
 	
 	///////////////////////////////////////////////////////////////////////////////////
-	//protected $connection = 'mongodb';
-	//protected $collection = 'users';
-	//public $timestamps = false;
+	protected $connection = 'mongodb';
+	protected $collection = 'users';
+	public $timestamps = false;
 	///////////////////////////////////////////////////////////////////////////////////
     
     /**

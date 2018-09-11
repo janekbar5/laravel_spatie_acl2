@@ -192,8 +192,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-		Jenssegers\Mongodb\MongodbServiceProvider::class,
-		Jenssegers\Mongodb\Auth\PasswordResetServiceProvider::class,
+	Jenssegers\Mongodb\MongodbServiceProvider::class,
+	Jenssegers\Mongodb\Auth\PasswordResetServiceProvider::class,
 
 
     ],

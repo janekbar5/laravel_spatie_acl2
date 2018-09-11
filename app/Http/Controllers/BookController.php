@@ -2,9 +2,8 @@
 
 
 namespace App\Http\Controllers;
-
-
 use App\Book;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,15 +13,19 @@ class BookController extends Controller
 
 {
     protected $categoryObject;
+    
 
 
-	public function __construct(CategoryController $categoryObject)
+    public function __construct()
     {
         $this->middleware('auth');
-		$this->categoryObject = $categoryObject;
+	//$this->categoryObject = $categoryObject;
     }
 	
-	
+    public function getCategories(){
+        //return $categories = Category::pluck('name', 'id');
+        return $categories = Category::all();
+    }
 	
 	/**
      * Display a listing of the resource.
@@ -32,9 +35,11 @@ class BookController extends Controller
     public function index()
     {
         //$books = Book::all();
-		//$books = Book::with('bookHasCategory')->get();
-		$books = Book::paginate(5);
+	//$books = Book::with('bookHasCategory')->get();
+	$books = Book::paginate(5);
+        //$categories = $this->getCategories();
         return view('books.index',compact('books'));
+        //return view('books.index',compact('books'))->with('i', (request()->input('page', 1) - 1) * 5);
 			//return 'rrrrrrrrrrrrrrrrr';
     }
 
@@ -46,7 +51,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        $categories = $this->getCategories();
+        return view('books.create',compact('categories'));
     }
 
 
@@ -61,10 +67,14 @@ class BookController extends Controller
         request()->validate([
             'name' => 'required',
             'detail' => 'required',
+            'category_id' => 'required',
         ]);
-
+        
+        //dd($request->all());
 
         Book::create($request->all());
+        
+       // $book = new Book();
 
 
         return redirect()->route('books.index')
