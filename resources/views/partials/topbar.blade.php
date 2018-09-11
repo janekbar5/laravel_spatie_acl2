@@ -26,9 +26,13 @@
 
 @auth
 	User name: {{Auth::user()->name}}  
-     Session:  {{Session::getId()}}
+        Session:  {{Session::getId()}}
 
-    
+        @hasrole('admin')
+            I am a admin!
+        @else
+            I am not a admin...
+        @endhasrole
 
 @endauth
 
