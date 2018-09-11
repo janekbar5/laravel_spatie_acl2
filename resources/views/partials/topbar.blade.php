@@ -27,12 +27,6 @@
 @auth
 User name: {{Auth::user()->name}}  || 
 
-@hasrole('writer')
-    I am a writer!
-@else
-    I am not a writer...
-@endhasrole
-
 Session:  {{Session::getId()}}
 
     

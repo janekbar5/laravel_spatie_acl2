@@ -68,14 +68,22 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
+        //dd($id);
+        /*
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
+         
+         
+        //$roles = Role::get()->pluck('name', 'name');
+        */
+        //$roles = User::find($id);;
+        //$user = User::findOrFail($id);
         $roles = Role::get()->pluck('name', 'name');
+        dd($roles);
+        //$user = User::find($id);
 
-        $user = User::findOrFail($id);
-
-        return view('admin.users.edit', compact('user', 'roles'));
+        return view('admin.users.edit', compact('user','roles'));
     }
 
     /**

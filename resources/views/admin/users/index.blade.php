@@ -1,4 +1,4 @@
-
+@inject('request', 'Illuminate\Http\Request')
 @extends('layouts.app')
 
 @section('content')
@@ -35,9 +35,7 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    @foreach ($user->roles()->pluck('name') as $role)
-                                        <span class="label label-info label-many">{{ $role }}</span>
-                                    @endforeach
+                                    
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.users.edit',[$user->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
