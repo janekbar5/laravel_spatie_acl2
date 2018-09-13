@@ -52,6 +52,8 @@ class UsersController extends Controller
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
+		
+		
         $user = User::create($request->all());
         $roles = $request->input('roles') ? $request->input('roles') : [];
         $user->assignRole($roles);
@@ -77,12 +79,12 @@ class UsersController extends Controller
          
         //$roles = Role::get()->pluck('name', 'name');
         */
-        //$roles = User::find($id);;
+        $roles = User::find($id);;
         //$user = User::findOrFail($id);
-        $roles = Role::get()->pluck('name', 'name');
-        dd($roles);
-        //$user = User::find($id);
-
+        //$roles = Role::get()->pluck('name', 'name');
+        //dd($roles);
+        $user = User::find($id);
+			//dd($user);
         return view('admin.users.edit', compact('user','roles'));
     }
 
@@ -98,6 +100,8 @@ class UsersController extends Controller
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
+		dd($request->all());
+		
         $user = User::findOrFail($id);
         $user->update($request->all());
         $roles = $request->input('roles') ? $request->input('roles') : [];

@@ -29,6 +29,7 @@ User name: {{Auth::user()->name}}  ||
 
 Session:  {{Session::getId()}}
 
+
     
 
 @endauth
