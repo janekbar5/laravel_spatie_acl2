@@ -36,4 +36,27 @@ class Book extends Eloquent
 	return Category::find($id);	
     }
 	
+	
+    public function images()
+	{
+	return $this->hasMany('App\Image');
+	}
+	
+    public function imagesFront()
+	{	
+	return $this->hasMany('App\Images')->orderBy('image_order')->limit(1);			
+	}    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -25,7 +25,7 @@
 
 
 @auth
-User name: {{Auth::user()->name}}  || 
+User name: {{Auth::user()->name}}  || {{Auth::user()->id}} \\
 
 Session:  {{Session::getId()}}
 

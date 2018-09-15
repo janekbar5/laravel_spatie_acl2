@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+<script src="{{asset('js/app.min.js')}}"></script>
 
 @section('content')
     <div class="row">
@@ -25,6 +29,18 @@
         </div>
     @endif
 
+    
+    ////////////////////////////////////////
+                    <div class="row">
+                            <div class="col-md-12">
+                                    <form class="dropzone" id="addImages" action="{{url('books/do-upload')}}">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="vehicle_id" value="{{ $book->id }}" />
+                                    <div class="dz-message" data-dz-message><span>Click here, or drag and drop to upload images</span></div>
+                                    </form>
+
+                            </div>
+                    </div>
 
     <!--<form action="{{ route('books.update',$book->id) }}" method="POST"> -->
     {!! Form::open(['method' => 'POST', 'route' => ['books.update',$book->id]]) !!}   
@@ -33,6 +49,9 @@
 
 
          <div class="row">
+             
+             
+             
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
 		            <strong>Name:</strong>

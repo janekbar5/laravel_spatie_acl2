@@ -12,34 +12,41 @@ $this->get('change_password', 'Auth\ChangePasswordController@showChangePasswordF
 
 $this->get('books', 'Auth\ChangePasswordController@showChangePasswordForm2')->name('auth.books');
 
-$this->get('books/index', 'BookController@index')->name('books.index');
+$this->get('books/index', 'BooksController@index')->name('books.index');
 
-$this->get('books/create', 'BookController@create')->name('books.create');
-$this->post('books/store', 'BookController@store')->name('books.store');
+$this->get('books/create', 'BooksController@create')->name('books.create');
+$this->post('books/store', 'BooksController@store')->name('books.store');
 
 
-$this->get('books/index', 'BookController@index')->name('books.index');
-$this->get('books/show/{id}', 'BookController@show')->name('books.show');
+$this->get('books/index', 'BooksController@index')->name('books.index');
+$this->get('books/show/{id}', 'BooksController@show')->name('books.show');
 
-$this->get('books/edit/{id}', 'BookController@edit')->name('books.edit');
-$this->post('books/edit/{id}', 'BookController@update')->name('books.update');
-$this->delete('books/delete/{id}', 'BookController@destroy')->name('books.destroy');
+$this->get('books/edit/{id}', 'BooksController@edit')->name('books.edit');
+$this->post('books/edit/{id}', 'BooksController@update')->name('books.update');
+$this->delete('books/delete/{id}', 'BooksController@destroy')->name('books.destroy');
+
+
 /////////////////////////////////
 
-$this->get('categories/index', 'CategoryController@index')->name('categories.index');
-$this->get('categories/create', 'CategoryController@create')->name('categories.create');
+$this->get('categories/index', 'CategoriesController@index')->name('categories.index');
+$this->get('categories/create', 'CategoriesController@create')->name('categories.create');
 
 
 
 
-$this->post('categories/store', 'CategoryController@store')->name('categories.store');
-$this->get('categories/index', 'CategoryController@index')->name('categories.index');
-$this->get('categories/edit/{id}', 'CategoryController@edit')->name('categories.edit');
-$this->post('categories/edit/{id}', 'CategoryController@update')->name('categories.update');
-$this->get('categories/show/{id}', 'CategoryController@show')->name('categories.show');
-$this->delete('categories/delete/{id}', 'CategoryController@destroy')->name('categories.destroy');
-
-
+$this->post('categories/store', 'CategoriesController@store')->name('categories.store');
+$this->get('categories/index', 'CategoriesController@index')->name('categories.index');
+$this->get('categories/edit/{id}', 'CategoriesController@edit')->name('categories.edit');
+$this->post('categories/edit/{id}', 'CategoriesController@update')->name('categories.update');
+$this->get('categories/show/{id}', 'CategoriesController@show')->name('categories.show');
+$this->delete('categories/delete/{id}', 'CategoriesController@destroy')->name('categories.destroy');
+//////////////////////////////////
+$this->post('images/deleteimg/{id}', 'ImagesController@getImageDelete')->name('images.store');	
+$this->post('images/deleteimg', 'ImagesController@getImageDelete2')->name('images.store');	
+$this->post('images/changeImageOrder', 'ImagesController@changeImageOrder')->name('images.store');	
+$this->get('images/deleteimgwithvehicle/{id}', 'ImagesController@deleteImageswithVehicle')->name('images.store');
+$this->get('images/deleteimg/{id}', 'ImagesController@getImageDelete')->name('images.store');
+$this->post('/books/do-upload', 'ImagesController@postImageUpload')->name('images.upload');
 
 
 
