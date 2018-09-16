@@ -29,13 +29,35 @@
         </div>
     @endif
 
+	
+	
+	
+	
+<div class="row">
+
+	<div class="col-lg-12">
+           <div id="gallery-images">
+				<div id="response"> </div>
+					 <ul>
+					 @foreach($book->imagesBack as $image)
+					 <li id="{{ $image->id }}">
+					 	<img class="delete-img" src="/img/red-delete-button.png" onclick="deleteArticle({{ $image->id }})"/>
+						<a href="{{ url($image->file_path) }}" target="_blank">
+						 	<img src="{{ url('/gallery/images/thumbs_240/' . $image->file_name) }}" />
+						 </a>		 
+					 </li>
+					 @endforeach
+					 </ul>
+		</div>
+	</div>
+</div>
     
     ////////////////////////////////////////
                     <div class="row">
                             <div class="col-md-12">
                                     <form class="dropzone" id="addImages" action="{{url('books/do-upload')}}">
                                     {{ csrf_field() }}
-                                    <input type="hidden" name="vehicle_id" value="{{ $book->id }}" />
+                                    <input type="hidden" name="book_id" value="{{ $book->id }}" />
                                     <div class="dz-message" data-dz-message><span>Click here, or drag and drop to upload images</span></div>
                                     </form>
 

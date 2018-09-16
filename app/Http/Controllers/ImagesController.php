@@ -136,7 +136,7 @@ class ImagesController extends Controller
                 
                  
                  
-                $image = Image::create([
+        $image = Image::create([
 		'book_id' => $request->input('book_id'),
 		'file_name' => $filename,
 		'file_size' => '777',

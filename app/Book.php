@@ -44,10 +44,13 @@ class Book extends Eloquent
 	
     public function imagesFront()
 	{	
-	return $this->hasMany('App\Images')->orderBy('image_order')->limit(1);			
+	return $this->hasMany('App\Image')->orderBy('image_order')->limit(1);			
 	}    
 	
-	
+	public function imagesBack()
+	{	
+	return $this->hasMany('App\Image')->orderBy('image_order');		
+	}
 	
 	
 	
