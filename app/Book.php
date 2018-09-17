@@ -24,7 +24,6 @@ class Book extends Eloquent
 	
     public function category()
     {
-        //return $this->hasMany('App\Category');
         return $this->belongsTo('App\Category','category_id');
     }
 
