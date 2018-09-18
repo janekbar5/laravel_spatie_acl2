@@ -34,7 +34,7 @@ class BooksController extends Controller
     {
         //$books = Book::all();
 	//$books = Book::with('bookHasCategory')->get();
-	$books = Book::paginate(5);
+	$books = Book::paginate(10);
         //$categories = $this->getCategories();
         return view('books.index',compact('books'));
         //return view('books.index',compact('books'))->with('i', (request()->input('page', 1) - 1) * 5);
@@ -56,17 +56,11 @@ class BooksController extends Controller
             'name' => 'required',
             'detail' => 'required',
             'category_id' => 'required',
-        ]);
+        ]);   
+        $book = Book::create($request->all());
         
-        //dd($request->all());
-
-        Book::create($request->all());
-        
-       // $book = new Book();
-
-
-        return redirect()->route('books.index')
-                        ->with('success','Book created successfully.');
+        //return redirect()->route('books.index')->with('success','Book created successfully.');
+        return redirect()->route('books.edit', $book->id)->with('success', 'Successfully created!');
     }
 
 
@@ -75,8 +69,8 @@ class BooksController extends Controller
     public function show($id)
     {
         
-		$book = Book::find($id);
-		return view('books.show',compact('book'));
+	$book = Book::find($id);
+	return view('books.show',compact('book'));
     }
 
 
@@ -110,21 +104,18 @@ class BooksController extends Controller
         return redirect()->route('books.index')
                          ->with('success','Book updated successfully');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Book  $book
-     * @return \Illuminate\Http\Response
-     */
+    
+    
+    
+    
+    
     public function destroy($id)
     {
         
-		$book = Book::find($id);
-		$book->delete();
-        return redirect()->route('books.index')
-                         ->with('success','Book deleted successfully');
-		
-		//return 'eeeee';
+	$book = Book::find($id);
+	$book->delete();
+        return redirect()->route('books.index')->with('success','Book deleted successfully');
+	
     }
 	
 	

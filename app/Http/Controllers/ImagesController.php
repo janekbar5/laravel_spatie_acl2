@@ -36,7 +36,7 @@ class ImagesController extends Controller
 	public function viewImagesList(Request $request)
 	{
 	//$galleries=Gallery::all();
-	$images=Images::where('created_by',Auth::user()->id)->get();	
+	$images=Image::where('created_by',Auth::user()->id)->get();	
 	return view('images.images')
 	->with('images',$images);
 	}
@@ -44,14 +44,16 @@ class ImagesController extends Controller
 	//delete single img
     public function getImageDelete($id)
     {        
-		$gallery_image = Images::findOrFail($id);		
+	$gallery_image = Image::find($id);
         $gallery_image_ok = $gallery_image->file_name;
 		
 		unlink(public_path('gallery/images/thumbs_240/'.$gallery_image_ok));
 		unlink(public_path('gallery/images/thumbs_340/'.$gallery_image_ok));
 		unlink(public_path('gallery/images/thumbs_1024/'.$gallery_image_ok));
         //from DB		
-        $gallery_image->delete();				
+        $gallery_image->delete();
+        
+         				
 		
     }
 	
@@ -60,7 +62,7 @@ class ImagesController extends Controller
 	public function deleteImageswithVehicle($id)
 	{	
 	
-		$images = Images::where('vehicle_id', '=', $id)->get();	
+		$images = Image::where('vehicle_id', '=', $id)->get();	
 		
 		foreach($images as $image) {			
 			unlink(public_path('gallery/images/thumbs_240/'.$image->file_name));
@@ -74,19 +76,25 @@ class ImagesController extends Controller
 		
 	public function changeImageOrder(Request $request)
 	{
-			$images = Images::orderBy('image_order','asc')->get();	
+			
+                        //$string = Input::get('order');
+                        //dd($string);
+                        
+                        $images = Image::orderBy('image_order','asc')->get();
 			$string = Input::get('order');
 			array($string);   
 			$string = trim($string, ".");    
 			$split = explode(",", $string);
-			$count = 0;
-		
+			$count = 1;		
 			foreach($split as $value) //loop over values
 			{	    
-				$count ++;	    	
-				DB::update('update images set image_order = '.$count.' where id = '.$value);   	
+			     $count ++;                            
+                             $image = Image::find($value);
+                             $image->image_order = $count;
+                             $image->update();
 				
-			}
+			}                         
+                         
 	
 	}
 	

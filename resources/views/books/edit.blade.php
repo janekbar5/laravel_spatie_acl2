@@ -43,9 +43,7 @@
 					 <ul>
 					 @foreach($book->imagesBack as $image)
 					 <li id="{{ $image->id }}">
-					 	
-                                              
-						<a href="{{ url($image->file_path) }}" target="_blank">
+						<a href="{{ url($image->file_path) }}" >
 						 	<img src="{{ url('/gallery/images/thumbs_240/' . $image->file_name) }}" width="100"/>
                                                 </a><br>
                                                  <button class="btn" data-value="{{ $image->id }}">DELETE</button>
@@ -159,7 +157,7 @@ var baseUrl = "{{url('/')}}";
 
 Dropzone.options.addImages={
 	
-	maxFilesize:200,
+	maxFilesize:2000,
 	maxFiles: 5,
 	acceptedFiles:'image/*,.jpeg,.jpg',
 		success: function(file, response){
@@ -188,7 +186,10 @@ var handleDropzoneFileUpload = {
 	var imageList = $('#gallery-images ul').addClass('ui-sortable');
 	var imageSrc =  baseUrl + '/gallery/images/thumbs_240/' + response.file_name;
 	var imageId =  response._id;
-	$(imageList).append('<li id="' + imageId + '" class="ui-sortable-handle"><a href="' + imageSrc + '"><img src="' + imageSrc + '"></a><br><button class="btn" data-value="'+imageId+'">DELETE</button></li>');
+	$(imageList).append('<li id="' + imageId + '" class="ui-sortable-handle">\n\
+                            <a href="' + imageSrc + '"><img src="' + imageSrc + '"></a><br>\n\
+                            <button class="btn" data-value="'+imageId+'">DELETE</button>\n\
+                            </li>');
 	}
 }
 
@@ -200,24 +201,16 @@ $(document).ready(function(){
 
 ////////////////////////////////////////////////////////////DELETE IMG
 $('.btn').click(function(e){
-
-    //var book_id = $(this).parent().data('id');
-    var book_id = $(this).data("value");
-
+    var image_id = $(this).data("value");
     $.ajax
     ({ 
-        url: '/images/deleteimg/'+book_id,
-        data: {"bookID": book_id},
-        type: 'post',
+        url: '/images/deleteimg/'+image_id,
+        data: {"image_id": image_id},
+        type: 'get',
         success: function(result)
         {
-            $('.modal-box').text(result).fadeIn(700, function() 
-            {
-                setTimeout(function() 
-                {
-                    $('.modal-box').fadeOut();
-                }, 2000);
-            });
+            //alert('done')
+            $('#'+image_id).remove();
         }
     });
 });
@@ -235,12 +228,10 @@ $("#response").slideUp("slow", function () {
 	$(function() {
 	$("#gallery-images ul").sortable({ opacity: 0.8, cursor: 'move', update: function() {
 			var token = $("#token").val();						
-			var order = ''+$(this).sortable("toArray");	
-			
-			
+			var order = ''+$(this).sortable("toArray");
 			    	$.ajax({
 					url:'/images/changeImageOrder',
-					type:'POST',			        
+					type:'post',			        
 					dataType:'json',
 					data:{"_token": "{{ csrf_token() }}", order },
 					success:function(data){

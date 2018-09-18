@@ -64,7 +64,7 @@
 		</div>
 
 
-    {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('global.app_create'), ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
 
 

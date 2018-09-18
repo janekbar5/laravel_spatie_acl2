@@ -41,11 +41,12 @@ $this->post('categories/edit/{id}', 'CategoriesController@update')->name('catego
 $this->get('categories/show/{id}', 'CategoriesController@show')->name('categories.show');
 $this->delete('categories/delete/{id}', 'CategoriesController@destroy')->name('categories.destroy');
 //////////////////////////////////
-$this->post('images/deleteimg/{id}', 'ImagesController@getImageDelete')->name('images.store');	
-$this->post('images/deleteimg', 'ImagesController@getImageDelete2')->name('images.store');	
+
+//$this->post('images/deleteimg', 'ImagesController@getImageDelete2')->name('images.store');	
 $this->post('images/changeImageOrder', 'ImagesController@changeImageOrder')->name('images.store');	
 $this->get('images/deleteimgwithvehicle/{id}', 'ImagesController@deleteImageswithVehicle')->name('images.store');
-$this->get('images/deleteimg/{id}', 'ImagesController@getImageDelete')->name('images.store');
+$this->get('images/deleteimg/{id}', 'ImagesController@getImageDelete')->name('images.delete');
+//$this->post('images/deleteimg/{id}', 'ImagesController@getImageDelete')->name('images.delete');	
 $this->post('/books/do-upload', 'ImagesController@postImageUpload')->name('images.upload');
 
 
