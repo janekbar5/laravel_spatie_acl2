@@ -50,6 +50,37 @@
                 </ul>
             </li>
            
+            
+            
+            
+            
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-car"></i>
+                    <span class="title">@lang('global.vehicles-management.title')</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="">
+                        <a href="{{ route('books.index') }}">
+                            <i class="fa fa-key"></i>
+                            <span class="title">Motorcycles & Scooters</span>
+                        </a>
+                    </li>
+                   <li class="">
+                        <a href="{{ route('categories.index') }}">
+                            <i class="fa fa-key"></i>
+                            <span class="title">Categories</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            
+            
 
             <li class="">
                 <a href="{{ route('auth.change_password') }}">
@@ -60,19 +91,9 @@
 			
 			
 			
-			<li class="">
-                <a href="{{ route('books.index') }}">
-                    <i class="fa fa-key"></i>
-                    <span class="title">Books</span>
-                </a>
-            </li>
+	    
 			
-			<li class="">
-                <a href="{{ route('categories.index') }}">
-                    <i class="fa fa-key"></i>
-                    <span class="title">Categories</span>
-                </a>
-            </li>
+			
 
             <li>
                 <a href="#logout" onclick="$('#logout').submit();">
