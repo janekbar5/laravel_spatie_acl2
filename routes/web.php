@@ -45,15 +45,13 @@ $this->post('vehicles/edit/{id}', 'VehiclesController@update')->name('vehicles.u
 $this->delete('vehicles/delete/{id}', 'VehiclesController@destroy')->name('vehicles.destroy');
 $this->post('vehicles/do-upload', 'ImagesController@postImageUpload')->name('images.upload');
 ////////////////////////////////////////
-$this->post('model/getmodel/{id}', 'ModelsController@getModels')->name('models.index');
+$this->post('model/getmodel', 'ModelsController@getModelsAjax')->name('models.index');
 
 
 
 
 
 $this->patch('change_password', 'Auth\ChangePasswordController@changePassword')->name('auth.change_password');
-
-
 // Password Reset Routes...
 $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('auth.password.reset');
 $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('auth.password.reset');

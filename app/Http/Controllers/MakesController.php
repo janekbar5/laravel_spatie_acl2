@@ -7,12 +7,13 @@ use App\Make;
 class MakesController extends Controller
 {
    
-    	public function getMakes()
-	{
-	return $makes = Make::all();	
-	}
-	
-	
-	
+    
+    public function getAllMakes()
+    {
+    return $makes = Make::all();	
+    }
+    
+    
+    
 	
 }

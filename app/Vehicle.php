@@ -23,7 +23,8 @@ class Vehicle extends Model
     protected $fillable = [
         'title',
 	'user_id',
-	'make_id', 
+	'make_id',
+        'model_id',
 	'description'
     ];
 	

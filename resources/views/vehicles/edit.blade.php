@@ -80,7 +80,7 @@
             </ul>
              {!! Form::open(['method' => 'POST', 'route' => ['vehicles.update',$vehicle->id]]) !!}   
     	     @csrf 
-              
+             {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!} 
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">
                
@@ -114,9 +114,22 @@
                          @endif
                       </select>
                       </div> 
-                  <div class="form-group" id="model_id">
-                      
-                  </div>
+                  
+                          
+                        @if (isset($models))
+                        <div class="form-group">
+                        <label for="City">Choose Model</label>
+                        <select name="model_id" id="model_id" class="form-control">  
+                          <option value ="">Choose Make</option>  
+                            @foreach ($models as $model)
+                            <option value ="{{$model->id}}" @if ($model->id === $vehicle->model_id) selected="selected" @endif>{{ $model->title }} </option>                             
+                            @endforeach
+                         </select>
+                      </div>     
+                        @else
+                         <div class="form-group" id="model_id">
+                         </div>    
+                        @endif
                   
                   
                   
@@ -202,28 +215,12 @@ cursor: move;
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>	
 <script>
 ////////////////////////////////////////////CDD    
-$(document).ready(function() {
-	$('#make_id22').on('change', function(){
-	$.get('/vehicles/edit', 
-	{
-	_token:$('#token').val(),	
-	make_id: $('#make_id').val()	
-	}, 
     
-    
-	function(data){
-	            $('#model_id').html(data);
-	        });
-	       
-	    });	
-          
-	});         
        
-$('#make_id').change(function(e){
-    var image_id = $(this).data("value");
+$('#make_id').change(function(e){    
     $.ajax
     ({ 
-        url: '/model/getmodel/'+image_id,
+        url: '/model/getmodel',
         data: {make_id: $('#make_id').val(),"_token": "{{ csrf_token() }}"},
         type: 'post',
         success: function(data)

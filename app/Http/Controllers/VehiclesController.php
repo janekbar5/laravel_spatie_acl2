@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Vehicle;
 use App\Make;
+use App\Modell;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Auth;
 
@@ -37,7 +38,11 @@ class VehiclesController extends Controller
     
     public function create()
     {
-        return view('books.create');
+        $makes  = app('App\Http\Controllers\MakesController')->getAllMakes();
+        $models = app('App\Http\Controllers\ModelsController')->getAllModels();
+        $user_id = \Auth::user()->id;
+        //return view('books.create');
+        return view('vehicles.create',compact('makes','models','user_id'));
     }
 
 
@@ -49,21 +54,34 @@ class VehiclesController extends Controller
         request()->validate([
             'title' => 'required',
             'description' => 'required',
+            'make_id' => 'required',
+            'model_id' => 'required',
         ]);
         
-        //dd($request->all());
-        $book = new Book;        
-        $book->title = $request->input('title');
-        $book->category_id = $request->input('category_id');
-        $book->description = $request->input('description');
-
-        
+       
+        $vehicle = new Vehicle;
+        $vehicle->title = $request->input('title');
+        $vehicle->make_id = $request->input('make_id');
+        $vehicle->model_id = $request->input('model_id');
+        $vehicle->colour_id = 1;
+        $vehicle->fuel_type_id = 1;
+        $vehicle->body_type_id = 1;
+        $vehicle->price = 5991;
+        //$vehicle->manufactured_year = 2005;
+        $vehicle->description = $request->input('description');
+        $vehicle->user_id = \Auth::user()->id;
+        $vehicle->token = str_random(20);
+        // SAVE THE USER
+            $vehicle->save();
+            // THE SUCCESSFUL RETURN
+            //return redirect('vehicles2')->with('status', 'Successfully created vehicle!');
+            return redirect()->route('vehicles.edit', $vehicle->token)->with('status', 'Successfully created vehicle!');
+        //$vehicle->save($request->all());        
         //Book::create($book);
-        $book->save();
+        //$vehicle->save();
 
 
-        return redirect()->route('books.index')
-                        ->with('success','Book created successfully.');
+        //return redirect()->route('vehicles.index')->with('success','Vehicle created successfully.');
     }
 
 
@@ -83,47 +101,41 @@ class VehiclesController extends Controller
         //$user = \Auth::user();
         $vehicle = Vehicle::orderBy('created_at','desc')
 		 ->where('token','LIKE', '%'.$token.'%')		 
-		 ->first();        
-        $makes = app('App\Http\Controllers\MakesController')->getMakes();
-        $make = Make::where('id', '=', $vehicle->make_id)->first();    
-	return view('vehicles.edit',compact('vehicle','makes','make'));
+		 ->first();  
+        
+        $makes = app('App\Http\Controllers\MakesController')->getAllMakes();
+        $make  = Make::where('id', '=', $vehicle->make_id)->first();
+        
+        $models = app('App\Http\Controllers\ModelsController')->getMakeModels($vehicle->make_id);
+        $model  = Modell::where('id', '=', $vehicle->make_id)->first();
+        
+	return view('vehicles.edit',compact('vehicle','makes','make','models','model'));
     }
 
-    public function getCategories(){
-        //return $categories = Category::pluck('name', 'id');
-        return $categories = Category::all();
-    }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Book  $book
-     * @return \Illuminate\Http\Response
-     */
+    
+    
+    
+    
+    
+    
     public function update(Request $request, $id)
     {
-         request()->validate([
+        request()->validate([
             'title' => 'required',
             'description' => 'required',
+            'make_id' => 'required',
+            'model_id' => 'required',
         ]);
 
-        $book = Vehicle::find($id);
-        //dd($request->all());
-        //$book->title = $request->input('title');
-        //$book->category_id = $request->input('category_id');
-        //$book->description = $request->input('description');
-        
-        $book->update($request->all());
-
-
+        $vehicle = Vehicle::find($id);
+        $vehicle->update($request->all());
         return redirect()->route('vehicles.index')->with('success','Vehicle updated successfully');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Book  $book
-     * @return \Illuminate\Http\Response
-     */
+    
+    
+    
+    
+    
     public function destroy($id)
     {
         
@@ -136,20 +148,7 @@ class VehiclesController extends Controller
     }
     
     
-    public function getModels($make_id)
-	{		
-	//$make_id = 'ddddddd';
-	
-        dd($make_id);
-        /*
-        $make_id = Input::get('make_id');
-	$level2 = \DB::table('models')->where('make_id','=',$make_id)->get();
-	$return = '<option value="">Choose Model</option>';			
-	foreach($level2 as $temp)
-	$return .= "<option value='$temp->id'>$temp->name</option>";
-	return $return;
-        */
-	}
+    
 	
 	
 	

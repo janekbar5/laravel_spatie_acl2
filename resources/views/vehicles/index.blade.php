@@ -8,7 +8,7 @@
                 <h2>Bikes</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('books.create') }}"> Create New Bike</a>
+                <a class="btn btn-success" href="{{ route('vehicles.create') }}"> Create New Bike</a>
             </div>
         </div>
     </div>
@@ -62,7 +62,5 @@
     
 	
 	{!! $vehicles->render() !!}
-	
-
 
 @endsection
