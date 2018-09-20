@@ -9,6 +9,7 @@
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Edit </h2>
+                {{ $user->id }}
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('books.index') }}"> Back</a>

@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Book;
 use App\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Auth;
 
 
 
@@ -101,10 +101,11 @@ class BooksController extends Controller
      */
     public function edit($id)	
     {
+        $user = \Auth::user();
         $book = Book::find($id);
         $categories = $this->getCategories();
         $category = Category::find($book->category_id);
-	return view('books.edit',compact('book','categories','category'));
+	return view('books.edit',compact('book','categories','category','user'));
     }
 
     public function getCategories(){

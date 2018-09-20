@@ -9,7 +9,7 @@ $this->post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
 // Change Password Routes...
 $this->get('change_password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('auth.change_password');
-
+/////////////////////////////////
 $this->get('books', 'Auth\ChangePasswordController@showChangePasswordForm2')->name('auth.books');
 $this->get('books/index', 'BooksController@index')->name('books.index');
 $this->get('books/create', 'BooksController@create')->name('books.create');
@@ -35,6 +35,19 @@ $this->get('images/deleteimgwithvehicle/{id}', 'ImagesController@deleteImageswit
 $this->get('images/deleteimg/{id}', 'ImagesController@getImageDelete')->name('images.delete');
 //////////////////////////////////	
 $this->get('vehicles/index', 'VehiclesController@index')->name('vehicles.index');
+$this->get('vehicles/index', 'VehiclesController@index')->name('vehicles.index');
+$this->get('vehicles/create', 'VehiclesController@create')->name('vehicles.create');
+$this->post('vehicles/store', 'VehiclesController@store')->name('vehicles.store');
+$this->get('vehicles/index', 'VehiclesController@index')->name('vehicles.index');
+$this->get('vehicles/show/{id}', 'VehiclesController@show')->name('vehicles.show');
+$this->get('vehicles/edit/{id}', 'VehiclesController@edit')->name('vehicles.edit');
+$this->post('vehicles/edit/{id}', 'VehiclesController@update')->name('vehicles.update');
+$this->delete('vehicles/delete/{id}', 'VehiclesController@destroy')->name('vehicles.destroy');
+$this->post('vehicles/do-upload', 'ImagesController@postImageUpload')->name('images.upload');
+////////////////////////////////////////
+$this->post('model/getmodel/{id}', 'ModelsController@getModels')->name('models.index');
+
+
 
 
 

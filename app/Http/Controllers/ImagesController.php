@@ -137,7 +137,7 @@ class ImagesController extends Controller
 		->save('gallery/images/thumbs_240/' . $filename,60);
 		/////////////////////////////////////////////////////////
 		
-		$gallery = Book::find($request->input('book_id'));
+		$gallery = Book::find($request->input('vehicle_id'));
 		///////   fill DB fields refer to method imagesFront() in Gallery model
 		
 		
@@ -145,7 +145,7 @@ class ImagesController extends Controller
                  
                  
         $image = Image::create([
-		'book_id' => $request->input('book_id'),
+		'vehicle_id' => $request->input('vehicle_id'),
 		'file_name' => $filename,
 		'file_size' => '777',
 		'file_mime' => $file->getClientMimeType(),

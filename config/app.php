@@ -195,6 +195,7 @@ return [
 		Jenssegers\Mongodb\MongodbServiceProvider::class,
 		Jenssegers\Mongodb\Auth\PasswordResetServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
