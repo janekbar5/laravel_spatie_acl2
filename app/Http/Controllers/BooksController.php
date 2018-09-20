@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Book;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -101,10 +102,15 @@ class BooksController extends Controller
     public function edit($id)	
     {
         $book = Book::find($id);
-	return view('books.edit',compact('book'));
+        $categories = $this->getCategories();
+        $category = Category::find($book->category_id);
+	return view('books.edit',compact('book','categories','category'));
     }
 
-
+    public function getCategories(){
+        //return $categories = Category::pluck('name', 'id');
+        return $categories = Category::all();
+    }
     /**
      * Update the specified resource in storage.
      *

@@ -86,14 +86,14 @@
                   
 		        <div class="form-group">
 		            <strong>Name:</strong>
-		            <input type="text" name="name" value="{{ $book->name }}" class="form-control" placeholder="Name">
+		            <input type="text" name="title" value="{{ $book->title }}" class="form-control" placeholder="Name">
 		        </div>
 		    
              
 		   
 		        <div class="form-group">
-		            <strong>Detail:</strong>
-		            <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $book->detail }}</textarea>
+		            <strong>Description:</strong>
+		            <textarea class="form-control" style="height:150px" name="description" placeholder="Detail">{{ $book->description }}</textarea>
 		        </div>
 		  
              
@@ -107,7 +107,7 @@
                           @if (isset($categories))
                           <option value ="">Choose Category</option>  
                             @foreach ($categories as $cat)
-                            <option value ="{{$cat->id}}" @if ($cat->id === $book->category_id) selected="selected" @endif>{{ $cat->name }} </option>
+                            <option value ="{{$cat->id}}" @if ($cat->id === $book->category_id) selected="selected" @endif>{{ $cat->title }} </option>
                              
                              @endforeach
                          @endif
