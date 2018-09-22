@@ -38,6 +38,15 @@ $this->get('vehicles/index', 'VehiclesController@index')->name('vehicles.index')
 $this->get('vehicles/index', 'VehiclesController@index')->name('vehicles.index');
 $this->get('vehicles/create', 'VehiclesController@create')->name('vehicles.create');
 $this->post('vehicles/store', 'VehiclesController@store')->name('vehicles.store');
+
+$this->post('vehicles/store_ajax', 'VehiclesController@storeAjax')->name('vehicles.store.ajax');
+$this->get('vehicles/edit_ajax/{id}', 'VehiclesController@editAjax')->name('vehicles.edit.ajax');
+
+$this->get('vehicles/create_ajax', 'VehiclesController@createAjax')->name('vehicles.create.ajax');
+$this->post('vehicles/create_ajax', 'VehiclesController@createAjaxPost')->name('vehicles.create.ajaxpost');
+
+
+
 $this->get('vehicles/index', 'VehiclesController@index')->name('vehicles.index');
 $this->get('vehicles/show/{id}', 'VehiclesController@show')->name('vehicles.show');
 $this->get('vehicles/edit/{id}', 'VehiclesController@edit')->name('vehicles.edit');

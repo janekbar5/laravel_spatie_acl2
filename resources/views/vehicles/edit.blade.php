@@ -214,6 +214,42 @@ cursor: move;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>	
 <script>
+    //////////////////////////////////////////form
+    $('body').on('click', '#submitForm', function(){
+        var registerForm = $("#Register");
+        var formData = registerForm.serialize();
+        $( '#name-error' ).html( "" );
+        $( '#email-error' ).html( "" );
+        $( '#password-error' ).html( "" );
+
+        $.ajax({
+            url:'/post_form2',
+            type:'POST',
+            data:formData,
+            success:function(data) {
+                console.log(data);
+                if(data.errors) {
+                    if(data.errors.name){
+                        $( '#name-error' ).html( data.errors.name[0] );
+                    }
+                    if(data.errors.email){
+                        $( '#email-error' ).html( data.errors.email[0] );
+                    }
+                    if(data.errors.password){
+                        $( '#password-error' ).html( data.errors.password[0] );
+                    }
+                    
+                }
+                if(data.success) {
+                    $('#success-msg').removeClass('hide');
+                    setInterval(function(){ 
+                        $('#SignUp').modal('hide');
+                        $('#success-msg').addClass('hide');
+                    }, 3000);
+                }
+            },
+        });
+    });
 ////////////////////////////////////////////CDD    
     
        

@@ -66,7 +66,7 @@ class Vehicle extends Model
 	
     public function model()
     {
-    return $this->belongsTo('App\Model','model_id');
+    return $this->belongsTo('App\Modell','model_id');
     }	
 	
 	
