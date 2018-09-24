@@ -3,9 +3,8 @@
 @section('content')
     <h3 class="page-title">Change password</h3>
 	
-	{{$user}}
-
-	{{$users}}
+	
+	
     @if(session('success'))
         <!-- If password successfully show message -->
         <div class="row">

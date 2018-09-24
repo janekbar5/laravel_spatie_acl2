@@ -26,7 +26,28 @@ class VehiclesController extends Controller
 	$this->categoryObject = $categoryObject;
     }
 	
+   public function formValidator(array $data)
+    {        
+		//////////custom message
+		$messsages = array(
+                'title.required'=>'You cant leave title empty',               
+                'description.required'=>'The field description has to be description',
+                'make_id.required'=>'You cant leave make_id field empty',
+                'model_id.required'=>'You cant leave model_id field empty',    
+		);
+		 
+		
+		 $rules = array(
+			'title' => 'required',
+                        'description' => 'required',
+                        'make_id' => 'required',
+                        'model_id' => 'required',
+		);
+		
+		return Validator::make($data,$rules,$messsages);
 	
+	
+    }	
 	
 	
     public function index()
@@ -58,14 +79,9 @@ class VehiclesController extends Controller
     }
     public function createAjaxPost(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required',
-            'make_id' => 'required',
-            'model_id' => 'required',            
-        ]);
+        $formValidator = $this->formValidator($request->all());
 
-        if ($validator->passes()) { 
+        if ($formValidator->passes()) { 
             $vehicle = new Vehicle;
             $vehicle->title = $request->input('title');
             $vehicle->make_id = $request->input('make_id');
@@ -82,7 +98,7 @@ class VehiclesController extends Controller
             $vehicle->save(); 
             return Response::json(['success' => '1','token' => $token]);
         }else{        
-            return Response::json(['errors' => $validator->errors()]);  
+            return Response::json(['errors' => $formValidator->errors()]);  
         }
     }
     
@@ -107,19 +123,14 @@ class VehiclesController extends Controller
     
     public function storeAjax(Request $request)
     {
-      $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required',
-            'make_id' => 'required',
-            'model_id' => 'required',            
-        ]);
+        $formValidator = $this->formValidator($request->all());
 
-        if ($validator->passes()) { 
+        if ($formValidator->passes()) { 
             $vehicle = Vehicle::find($request->input('id'));
             $vehicle->update($request->all());
             return Response::json(['success' => '1']);
         }else{        
-            return Response::json(['errors' => $validator->errors()]);  
+            return Response::json(['errors' => $formValidator->errors()]);  
         }
     
     

@@ -12,7 +12,7 @@
                 </a>
             </li>
             
-           
+           @hasrole('admin')
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-users"></i>
@@ -50,9 +50,8 @@
                 </ul>
             </li>
             
-            
-                
-            <li class="treeview">
+			
+			 <li class="treeview">
                 <a href="#">
                     <i class="fa fa-users"></i>
                     <span class="title">@lang('global.bike-management.title')</span>
@@ -78,8 +77,13 @@
             
                 </ul>
             </li>
+			
+            @endhasrole
+                
+           
            
             
+        @hasrole('motorcycles_dealer')
             
             <li class="treeview">
                 <a href="#">
@@ -102,7 +106,7 @@
             
                 </ul>
             </li>
-            
+         @endhasrole    
             
             
 
@@ -123,6 +127,10 @@
                     <span class="title">@lang('global.app_logout')</span>
                 </a>
             </li>
+			
+			
+			
+			
         </ul>
     </section>
 </aside>

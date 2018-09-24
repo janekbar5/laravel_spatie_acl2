@@ -37,40 +37,32 @@
     
 <div class="row">
 	<div class="col-lg-12">
-           <div id="gallery-images">
-		<div id="response"> </div>
-                <ul>
-		@foreach($vehicle->imagesBack as $image)
-		<li id="{{ $image->id }}">
-		<a href="{{ url($image->file_path) }}" >
-		<img src="{{ url('/gallery/images/thumbs_240/' . $image->file_name) }}" width="100"/>
-                </a><br>
-                <button class="btn_img_del" data-value="{{ $image->id }}">DELETE</button>
-		</li>
-		@endforeach
-		</ul>
-            </div>
+           //////////////
 	</div>
 </div>
     
     
-<div class="row">
-    <div class="col-md-12">
-        <form class="dropzone" id="addImages" action="{{url('vehicles/do-upload')}}">
-        {{ csrf_field() }}
-        <input type="hidden" name="vehicle_id" value="{{ $vehicle->id }}" />
-        <div class="dz-message" data-dz-message><span>Click here, or drag and drop to upload images</span></div>
-        </form>
 
-    </div>
-</div>
     <br><br>
 </div>
     
     
-   <div class="col-md-12">
-                
-                    <form method="POST" id="Register">
+   
+
+
+    
+ <div class="col-md-12">
+          <!-- Custom Tabs -->
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_1" data-toggle="tab">Details</a></li>
+              <li><a href="#tab_2" data-toggle="tab">Images</a></li>
+              <li><a href="#tab_3" data-toggle="tab">Response</a></li>
+              
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_1">
+                             <form method="POST" id="Register">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $vehicle->id }}" class="form-control" >
                         
@@ -139,17 +131,57 @@
                         
                         <div class="row">
                             <div class="col-xs-12 text-center">
-                              <button type="button" id="submitForm" class="btn btn-primary btn-prime white btn-flat">Register</button>
+                              <button type="button" id="submitForm" class="btn btn-primary btn-prime white btn-flat">Save</button>
                             </div>
                         </div>
                     </form>
-                
-            
-        
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_2">
+               
+                  
+                <div class="row">
+                    <div id="gallery-images">
+                        <div id="response"> </div>
+                        <ul>
+                        @foreach($vehicle->imagesBack as $image)
+                        <li id="{{ $image->id }}">
+                        <a href="{{ url($image->file_path) }}" >
+                        <img src="{{ url('/gallery/images/thumbs_240/' . $image->file_name) }}" width="100"/>
+                        </a><br>
+                        <button class="btn_img_del" data-value="{{ $image->id }}">DELETE</button>
+                        </li>
+                        @endforeach
+                        </ul>
+                    </div>
+                    
+                <div class="col-md-12">
+                    <form class="dropzone" id="addImages" action="{{url('vehicles/do-upload')}}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="vehicle_id" value="{{ $vehicle->id }}" />
+                    <div class="dz-message" data-dz-message><span>Click here, or drag and drop to upload images</span></div>
+                    </form>
 
-</div>   
-
-   
+                </div>
+                </div>
+                  
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_3">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                It has survived not only five centuries, but also the leap into electronic typesetting,
+                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                like Aldus PageMaker including versions of Lorem Ipsum.
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- nav-tabs-custom -->
+        </div>   
 
 	
 	
@@ -286,7 +318,7 @@ var handleDropzoneFileUpload = {
 	var imageId =  response._id;
 	$(imageList).append('<li id="' + imageId + '" class="ui-sortable-handle">\n\
                             <a href="' + imageSrc + '"><img src="' + imageSrc + '"></a><br>\n\
-                            <button class="btn" data-value="'+imageId+'">DELETE</button>\n\
+                            <button class="btn_img_del" data-value="'+imageId+'">DELETE</button>\n\
                             </li>');
 	}
 }
