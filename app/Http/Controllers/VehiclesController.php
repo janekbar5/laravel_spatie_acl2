@@ -30,10 +30,10 @@ class VehiclesController extends Controller
     {        
 		//////////custom message
 		$messsages = array(
-                'title.required'=>'You cant leave title empty',               
-                'description.required'=>'The field description has to be description',
-                'make_id.required'=>'You cant leave make_id field empty',
-                'model_id.required'=>'You cant leave model_id field empty',    
+                'title.required'=>'You cant leave title field empty',               
+                'description.required'=>'You cant leave description field empty',
+                'make_id.required'=>'You cant leave make field empty',
+                'model_id.required'=>'You cant leave model field empty',    
 		);
 		 
 		
@@ -48,11 +48,11 @@ class VehiclesController extends Controller
 	
 	
     }	
-	
+	//where('token','LIKE', '%'.$token.'%')
 	
     public function index()
     {
-	$vehicles = Vehicle::paginate(5);
+	$vehicles = Vehicle::where('user_id','=',\Auth::user()->id)->paginate(5);
         return view('vehicles.index',compact('vehicles'));	
     }
 

@@ -141,6 +141,7 @@
                
                   
                 <div class="row">
+                      <div class="col-md-12">
                     <div id="gallery-images">
                         <div id="response"> </div>
                         <ul>
@@ -154,7 +155,11 @@
                         @endforeach
                         </ul>
                     </div>
-                    
+                    </div>
+                 </div>
+                  
+                  
+                <div class="row">  
                 <div class="col-md-12">
                     <form class="dropzone" id="addImages" action="{{url('vehicles/do-upload')}}">
                     {{ csrf_field() }}
@@ -241,16 +246,16 @@ cursor: move;
                 console.log(data);
                 if(data.errors) {
                     if(data.errors.title){
-                        $( '#title-error' ).html( data.errors.title[0] );
+                        $( '#title-error' ).html( '<div class="alert alert-danger alert-dismissible">'+data.errors.title[0]+'</div>' );
                     }
                     if(data.errors.description){
-                        $( '#description-error' ).html( data.errors.description[0] );
+                        $( '#description-error' ).html( '<div class="alert alert-danger alert-dismissible">'+data.errors.description[0]+'</div>' );
                     }
                     if(data.errors.make_id){
-                        $( '#make_id-error' ).html( data.errors.make_id[0] );
+                        $( '#make_id-error' ).html( '<div class="alert alert-danger alert-dismissible">'+data.errors.make_id[0]+'</div>' );
                     }
                      if(data.errors.model_id){
-                        $( '#model_id-error' ).html( data.errors.model_id[0] );
+                        $( '#model_id-error' ).html( '<div class="alert alert-danger alert-dismissible">'+data.errors.model_id[0]+'</div>' );
                     }
                 }
                 if(data.success) {
