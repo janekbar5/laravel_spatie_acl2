@@ -53,7 +53,8 @@ class VehiclesController extends Controller
     public function index()
     {
 	$vehicles = Vehicle::where('user_id','=',\Auth::user()->id)->paginate(5);
-        return view('vehicles.index',compact('vehicles'));	
+        return view('vehicles.index',compact('vehicles'));
+        //return 'huj';
     }
 
 
@@ -220,13 +221,10 @@ class VehiclesController extends Controller
     
     public function destroy($id)
     {
-        
-		$book = Book::find($id);
-		$book->delete();
-        return redirect()->route('books.index')
-                         ->with('success','Book deleted successfully');
-		
-		//return 'eeeee';
+        $vehicle = Vehicle::find($id);
+	$vehicle->delete();
+        return redirect()->route('vehicles.index')->with('success','Vehicle deleted successfully');		
+	//return 'eeeee';
     }
     
     
