@@ -125,8 +125,27 @@
                             </span>
                          </div>    
                         @endif
+		
+						
                         
+		       <div class="form-group">
+                        <label for="City">Choose Make</label>
+                       {!! Form::select('tags[]', $tags, $currentTags, ['class' => 'form-control ', 'multiple', 'id' => 'tags_list']) !!}	
+                        <span class="text-danger">
+                                <strong id="make_id-error"></strong>
+                            </span>
+                      </div>    
                         
+<link href=" https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" type="text/css">
+  <script src="http://doccotton.test/js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>						
+<script>
+$('#tags_list').select2({
+    placeholder: 'Choose a category',
+    tags: true
+});
+
+</script>
                         
                         
                         <div class="row">

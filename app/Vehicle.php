@@ -33,6 +33,14 @@ class Vehicle extends Model
         return $this->belongsTo('App\Category','category_id');
     }
 
+	public function tags()
+    {
+        return $this->belongsToMany('App\Tag','vehicle_tag','vehicle_id','tag_id');
+    }
+	
+	
+	
+	
 	
 	
     public function getCategory($id)
