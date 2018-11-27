@@ -18,12 +18,14 @@ class VehiclesController extends Controller
 
 {
     protected $categoryObject;
+    protected $imagesDeleting;
 
 
-    public function __construct(CategoriesController $categoryObject)
+    public function __construct(CategoriesController $categoryObject,ImagesController $imagesDeleting)
     {
         $this->middleware('auth');
 	$this->categoryObject = $categoryObject;
+        $this->imagesDeleting = $imagesDeleting;
     }
 	
    public function formValidator(array $data)
@@ -162,7 +164,8 @@ class VehiclesController extends Controller
         $vehicle->description = $request->input('description');
         $vehicle->user_id = \Auth::user()->id;
         $vehicle->token = str_random(20);        
-        $vehicle->save();        
+        $vehicle->save();    
+		
         return redirect()->route('vehicles.edit', $vehicle->token)->with('status', 'Successfully created vehicle!');
         
     }
@@ -209,7 +212,6 @@ class VehiclesController extends Controller
             'make_id' => 'required',
             'model_id' => 'required',
         ]);
-
         $vehicle = Vehicle::find($id);
         $vehicle->update($request->all());
         return redirect()->route('vehicles.index')->with('success','Vehicle updated successfully');
@@ -222,7 +224,9 @@ class VehiclesController extends Controller
     public function destroy($id)
     {
         $vehicle = Vehicle::find($id);
-	$vehicle->delete();
+	$vehicle->delete();        
+        $this->imagesDeleting->deleteImageswithVehicle($id);
+        
         return redirect()->route('vehicles.index')->with('success','Vehicle deleted successfully');		
 	//return 'eeeee';
     }

@@ -76,10 +76,8 @@ class ImagesController extends Controller
 		
 	public function changeImageOrder(Request $request)
 	{
-			
-                        //$string = Input::get('order');
-                        //dd($string);
-                        
+			//$string = Input::get('order');
+                        //dd($string);                        
                         $images = Image::orderBy('image_order','asc')->get();
 			$string = Input::get('order');
 			array($string);   
@@ -93,8 +91,7 @@ class ImagesController extends Controller
                              $image->image_order = $count;
                              $image->update();
 				
-			}                         
-                         
+			} 
 	
 	}
 	

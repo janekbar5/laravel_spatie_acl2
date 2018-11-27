@@ -76,7 +76,7 @@ class BooksController extends Controller
 
 
         return redirect()->route('books.index')
-                        ->with('success','Book created successfully.');
+                          ->with('success','Book created successfully.');
     }
 
 
