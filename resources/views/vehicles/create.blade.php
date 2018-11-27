@@ -70,6 +70,15 @@
                          </select>
                       </div> 
                     </div> 
+					
+					
+					<div class="form-group">
+                        <label for="City">Choose Make</label>
+                       {!! Form::select('tags[]', $tags, $currentTags, ['class' => 'form-control', 'multiple', 'id' => 'tags_list']) !!}	
+                        <span class="text-danger">
+                                <strong id="make_id-error"></strong>
+                            </span>
+                      </div>     
 		   
             </div>
 

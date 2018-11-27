@@ -26,7 +26,8 @@
         <tr>
             <th>No</th>
             <th>Foto</th>            
-	    <th>Title</th>
+	        <th>Title</th>
+			<th>Tags</th>
             <th>Make</th>
             <th>Model</th>
             <th width="280px">Action</th>
@@ -47,7 +48,13 @@
 	        <td>{{ $vehicle->title }}</td>
 	        
 		<td>{{ $vehicle->make()->first()->title }}</td>
-                <td>{{ $vehicle->model()->first()->title }}</td>
+		<td>  
+		@foreach ($vehicle->tags as $tag)
+		{{$tag->name}}			  
+		@endforeach
+		</td>
+        <td>{{ $vehicle->model()->first()->title }}</td>
+		
 	        <td>
                 {!! Form::open(['method' => 'DELETE', 'route'=>['vehicles.destroy', $vehicle->id]]) !!}    
                     <a class="btn btn-info" href="{{ route('vehicles.show',$vehicle->token) }}">Show</a>

@@ -131,10 +131,28 @@
                          </div>    
                         @endif
                   
+    
+
+             
                   
-                  
+                 <div class="form-group">
+                        <label for="City">Choose Make</label>
+                       {!! Form::select('tags[]', $tags, $currentTags, ['class' => 'form-control', 'multiple', 'id' => 'tags_list']) !!}	
+                        <span class="text-danger">
+                                <strong id="make_id-error"></strong>
+                            </span>
+                      </div>     
+<link href=" https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" type="text/css">
+  <script src="http://doccotton.test/js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>						
+<script>
+$('#tags_list').select2({
+    placeholder: 'Choose a category',
+    tags: true
+});
+
+</script>
                  
-                  
                   
                   
               </div>
@@ -210,9 +228,11 @@ cursor: move;
 </style>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>	
+
+
+
+
+
 <script>
     //////////////////////////////////////////form
     $('body').on('click', '#submitForm', function(){
